@@ -15,11 +15,11 @@ use clap::Parser;
 #[command(name = "ustchat")]
 struct Cli {
     /// USTC CAS username
-    #[arg(long, env = "USTCHAT_USERNAME")]
+    #[arg(long, short, env = "USTCHAT_USERNAME")]
     username: Option<String>,
 
     /// USTC CAS password
-    #[arg(long, env = "USTCHAT_PASSWORD", hide_env_values = true)]
+    #[arg(long, short, env = "USTCHAT_PASSWORD", hide_env_values = true)]
     password: Option<String>,
 
     #[command(subcommand)]
@@ -38,14 +38,10 @@ enum Command {
         #[arg(long, default_value = "127.0.0.1")]
         host: String,
 
-        /// Upstream USTChat API base URL
-        #[arg(long, default_value = consts::CHAT_URL)]
-        endpoint: String,
-
         /// Local API keys that clients must present.
         ///
         /// If omitted, no local authentication is required.
-        #[arg(long = "auth", value_name = "KEY")]
+        #[arg(long = "auth", short, value_name = "KEY")]
         auth_keys: Vec<String>,
     },
 }
@@ -58,7 +54,6 @@ async fn main() {
         Command::Run {
             port,
             host,
-            endpoint: _endpoint,
             auth_keys,
         } => {
             let username = cli.username.unwrap_or_else(|| {

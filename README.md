@@ -47,7 +47,6 @@ ustchat run --auth sk-secret-key
 | `--password` | `USTCHAT_PASSWORD` | — | USTC CAS 密码 |
 | `--port` | — | `28080` | 代理监听端口 |
 | `--host` | — | `127.0.0.1` | 代理监听地址 |
-| `--endpoint` | — | `https://chat.ustc.edu.cn` | 上游 API 地址 |
 | `--auth` | — | 无 | 客户端需携带的 API Key，可多次指定 |
 
 ## API 端点
